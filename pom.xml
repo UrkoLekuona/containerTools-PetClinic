@@ -274,6 +274,65 @@
           </dependency>
         </dependencies>
       </plugin>
+      <plugin>
+        <groupId>com.google.cloud.tools</groupId>
+		<artifactId>jib-maven-plugin</artifactId>
+		<version>2.1.0</version>
+		<configuration>
+		  <to>
+              <image>petclinic:jib</image>
+          </to>
+		</configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>com.spotify</groupId>
+        <artifactId>dockerfile-maven-plugin</artifactId>
+        <version>1.4.13</version>
+        <executions>
+          <execution>
+            <id>default</id>
+          </execution>
+        </executions>
+        <configuration>
+          <repository>petclinic</repository>
+          <tag>spotify</tag>
+          <buildArgs>
+            <JAR_FILE>${project.artifactId}-${project.version}.jar</JAR_FILE>
+          </buildArgs>
+        </configuration>
+      </plugin>
+       <!--
+       <plugin>
+         <groupId>io.fabric8</groupId>
+         <artifactId>docker-maven-plugin</artifactId>
+         <version>0.33.0</version>
+         <configuration>
+           <images>
+             <image>
+               <name>petclinic:fabric8</name>
+             </image>
+           </images>
+         </configuration>
+         <executions>
+           <execution>
+             <id>start</id>
+               <phase>pre-integration-test</phase>
+               <goals>
+                 <goal>build</goal>
+                 <goal>start</goal>
+               </goals>
+           </execution>
+           <execution>
+             <id>stop</id>
+             <phase>post-integration-test</phase>
+             <goals>
+               <goal>stop</goal>
+             </goals>
+           </execution>
+        </executions>
+      </plugin>
+      -->  
     </plugins>
   </build>
 
